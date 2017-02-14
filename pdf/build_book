@@ -1,0 +1,16 @@
+#! /bin/bash
+mkdir tmp
+cp ../*.ipynb ./tmp
+cp ../*.py ./tmp
+cp -r ../code/ ./tmp/code/
+
+#echo "merging book..."
+ipython merge_book.py
+
+echo "creating pdf..."
+jupyter nbconvert --to latex --template book book.ipynb
+ipython to_pdf.py
+
+mv book.pdf ..
+
+
